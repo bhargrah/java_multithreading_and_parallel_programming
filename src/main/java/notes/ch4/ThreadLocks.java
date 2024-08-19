@@ -9,7 +9,7 @@ import java.util.concurrent.locks.ReentrantLock;
 /**
  * @author Rahul Kumar Bhargava
  * @version 1.0
- * @description Description of the purpose of this file.
+ * @description Calculate sum of shared counter by multiple threads using Lock API
  * @date 19/08/24
  */
 
@@ -44,8 +44,6 @@ public class ThreadLocks {
         });
 
         System.out.println("Total sum : " + SUM);
-
-
     }
 
     static class AggregateWorker implements Runnable {
@@ -63,7 +61,7 @@ public class ThreadLocks {
             for (int i = left; i < right; i++) {
                 lock.lock();
                 SUM = SUM + arr[i];
-                lock.unlock();
+                lock.unlock(); // best practice is to wrap up in try-catch
             }
         }
     }
