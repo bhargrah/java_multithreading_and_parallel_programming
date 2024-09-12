@@ -3,9 +3,11 @@ package notes.ch7;
 /**
  * @author Rahul Kumar Bhargava
  * @version 1.0
- * @description Description of the purpose of this file.
+ * @description To implement Scatter Gather pattern using various concurrency constructs.
  * @date 03/09/24
  */
+
+
 public class ScatterGatherImplementations {
 
     // TODO :: Code using Countdown Latch
