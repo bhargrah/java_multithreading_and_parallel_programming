@@ -1,4 +1,4 @@
-package job.ms;
+package bhargrah.ms.map;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +9,7 @@ import java.util.List;
  * @description Description of the purpose of this file.
  * @date 23/08/24
  */
+
 
 class Element {
 
@@ -31,16 +32,16 @@ class Element {
 
 public class MyHashMap {
 
-    List<List<Element>> bucket = new ArrayList<>(BUCKET_SIZE);
-    public static Integer BUCKET_SIZE = 10;
+    List<List<Element>> bucket;
+    private Integer BUCKET_SIZE;
 
-    public MyHashMap(int size) {
-        for (int i = 0; i < size; i++) {
-            bucket.add(i, new ArrayList<>());
-        }
+    public MyHashMap(Integer size) {
+        BUCKET_SIZE = size;
+        bucket = new ArrayList<>(size);
+        for (int i = 0; i < size; i++) bucket.add(i, new ArrayList<>());
     }
 
-    public void put(int key, int value) {
+    public void put(Integer key, Integer value) {
         boolean isPresent = false;
         int keyHash = hashcode(key);
         List<Element> internalList = bucket.remove(keyHash);
@@ -59,7 +60,7 @@ public class MyHashMap {
         bucket.add(keyHash, internalList);
     }
 
-    public Integer get(int key) {
+    public Integer get(Integer key) {
         int keyHash = hashcode(key);
         List<Element> internalList = bucket.get(keyHash);
 
@@ -70,7 +71,7 @@ public class MyHashMap {
         return -1;
     }
 
-    public Boolean remove(int key) {
+    public Boolean remove(Integer key) {
         int indexTopRemove = -1;
         int keyHash = hashcode(key);
         List<Element> list = bucket.remove(keyHash);
@@ -89,7 +90,7 @@ public class MyHashMap {
         return (indexTopRemove != -1);
     }
 
-    public int hashcode(int key) {
+    public int hashcode(Integer key) {
         return key % BUCKET_SIZE;
     }
 
@@ -106,7 +107,7 @@ public class MyHashMap {
 
     public static void main(String[] args) {
 
-        MyHashMap map = new MyHashMap(BUCKET_SIZE);
+        MyHashMap map = new MyHashMap(10);
         map.put(2, 9);
         map.put(1, 5);
         map.put(10, -1);
